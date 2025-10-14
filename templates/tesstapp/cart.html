@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6 bg-gray-50">
+
+<h1 class="text-3xl font-bold mb-4">Your Cart</h1>
+
+<div id="cart-items" class="space-y-3">
+    <!-- Cart items will be rendered here by JS -->
+</div>
+
+<div class="mt-4">
+    <strong>Total: ₹<span id="cart-total">0.00</span></strong>
+</div>
+
+<script src="{% static 'tesstapp/cart.js' %}"></script>
+</body>
+</html>

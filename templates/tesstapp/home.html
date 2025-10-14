@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'tesstapp/style.css' %}">
+</head>
+<body>
+    <header class="bg-white shadow items-center justify-between ">
+        <div class="navbar flex justify-around gap-2">
+
+            <div class="logo font-bold text-xl">FoodBench</div>
+
+            <div class="flex gap-2">
+                <form method="GET" action="{% url 'search_location' %}"><input type="text" placeholder="Search location" class="px-2 py-1 rounded"></form>
+                <form method="GET" action="{% url 'search_food' %}"><input type="text" placeholder="Search food" class="px-2 py-1 rounded"></form>                
+            </div>
+       
+            <div class="flex gap-2 flex justify-around ">
+                <a href="{% url 'login' %}" class="bg-blue-500   hover:bg-blue-600 px-3 py-1 rounded">Login</a>
+                <a href="{% url 'signup' %}" class="bg-green-500 hover:bg-green-600 px-3 py-1 rounded">Sign Up</a>
+                <button onclick="window.location.href='/cart/'" class="bg-yellow-400 hover:bg-yellow-500 px-3 py-1 rounded">Cart</button>
+            </div>
+
+        </div> 
+    </header>    
+
+    <main class="p-4">
+        <h1 class="text-2xl font-bold mb-4">Restaurants</h1>
+        <div id="restaurant-list" class="grid grid-cols-3 gap-4">
+            <!-- Restaurants will load here -->
+        </div>
+    </main>
+
+    <script src="{% static 'tesstapp/home.js' %}"></script>
+</body>
+</html>
