@@ -5,11 +5,42 @@
     <meta charset="UTF-8">
     <title>{{ restaurant.name }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .body{
+             background: rgba(6, 224, 224, 0.671);
+             flex-direction: column;
+             width: 100vw;
+             height: 90vh;
+           
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;           
+        }
+        #menu-list{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+                      
+        }
+        .cart{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        
+    </style>
+    
 </head>
-<body class="p-6 bg-gray-50">
+<body class=" body p-6 ">
 
     <!-- Restaurant Info -->
-    <div class="mb-8">
+    <div class=" main ">
         <h1 class="text-3xl font-bold mb-2">{{ restaurant.name }}</h1>
         <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}" class="w-64 h-64 object-cover rounded mb-2">
         <p>📍 Location: {{ restaurant.location }}</p>
@@ -17,10 +48,11 @@
     </div>
 
     <!-- Menu Items -->
-    <h2 class="text-2xl font-semibold mb-4">Menu</h2>
-    <div id="menu-list" class="space-y-3">
+    
+    <div id="menu-list" class="space-y-3 ">
+        <h2 class="text-2xl font-semibold mb-4">Menu</h2>
         {% for item in restaurant.menu.all %}
-        <div class="flex justify-between items-center bg-white p-4 rounded shadow">
+        <div class="flex justify-between  bg-white p-4 rounded shadow  gap-4">
             <span>{{ item.name }} - ₹{{ item.price }}</span>
             <button class="bg-yellow-400 hover:bg-yellow-500 px-3 py-1 rounded add-to-cart-btn"
                     data-id="{{ item.id }}"
@@ -35,7 +67,7 @@
     </div>
 
     <!-- Go to Cart Button -->
-    <div class="mt-6">
+    <div class="cart mt-6">
         <a href="{% url 'cart_page' %}" 
            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
            Go to Cart

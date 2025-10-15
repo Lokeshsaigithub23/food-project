@@ -51,39 +51,56 @@ def signup_view(request):
         return redirect('login')
     return render(request, 'tesstapp/signup.html')
 
-# Food search
+
+
+
+# 🔍 Search for Food Items
 def search_food(request):
-    query = request.GET.get('food', '').strip()  # remove extra spaces
-    food_results = []
-    
-    if query:  # only search if query is not empty
-        food_results = fooditem.objects.filter(name__icontains=query)
-    
+    query = request.GET.get('food', '').strip()  # get food query
+    food_results = fooditem.objects.filter(name__icontains=query) if query else []
+
+    print("FOOD QUERY:", query)
+    print("FOOD RESULTS:", list(food_results))
+
     return render(request, 'tesstapp/search_results.html', {
         'food_results': food_results,
-        'query': query
+        'restaurant_results': [],  # empty because this view is only food
+        'query': query,
+        'location': '',
     })
 
-# Location search
+
+
+# 📍 Search for Restaurants by Location
 def search_location(request):
     location = request.GET.get('location', '').strip()
-    restaurant_results = []
-    
-    if location:
-        restaurant_results = restaurant.objects.filter(location__icontains=location)
-    
+    restaurant_results = restaurant.objects.filter(location__icontains=location) if location else []
+
+    # Debugging
+    print("LOCATION ENTERED:", location)
+    print("RESTAURANT RESULTS:", list(restaurant_results))
+
     return render(request, 'tesstapp/search_results.html', {
         'restaurant_results': restaurant_results,
-        'location': location
+        'food_results': [],  # always pass empty list if not searching food
+        'query': '',
+        'location': location,
     })
 
 
+# 🔎 Combined search (both food and location)
 def search(request):
     query = request.GET.get('food', '').strip()
     location = request.GET.get('location', '').strip()
 
     food_results = fooditem.objects.filter(name__icontains=query) if query else []
     restaurant_results = restaurant.objects.filter(location__icontains=location) if location else []
+
+    # Debugging
+    print("FOOD QUERY:", query)
+    print("FOOD RESULTS:", list(food_results))
+    print("LOCATION ENTERED:", location)
+    print("RESTAURANT RESULTS:", list(restaurant_results))
 
     return render(request, 'tesstapp/search_results.html', {
         'food_results': food_results,

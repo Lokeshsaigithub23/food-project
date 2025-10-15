@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+     <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+            text-align: center;
+            height: 100vh;
+            width: 100vw;  
+            background-color: rgba(47, 255, 141, 0.726);          
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    {% if restaurant_results %}
+        <h2>Restaurants in "{{ location }}"</h2>
+        <ul>
+            {% for res in restaurant_results %}
+                <li>🏪 {{ res.name }} — 📍 {{ res.location }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if food_results %}
+        <h2>Food Items matching "{{ query }}"</h2>
+        <ul>
+            {% for food in food_results %}
+                <li>🍽 {{ food.name }} — ₹{{ food.price }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if not restaurant_results and not food_results %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <a href="{% url 'home_page' %}">Back to Home</a>
+</body>
+</html>
