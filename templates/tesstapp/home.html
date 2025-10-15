@@ -8,7 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body{
+            height: 100vh;
+            width: 100vw;
              background: linear-gradient(to bottom right, rgba(73, 136, 219, 0.692) 10%, rgba(218, 160, 73, 0.651)70%);
+        }
+        .restaurants>h1{
+            font-size: 30px;
+        }
+        .restaurants>img{
+            height: 20px;
+            width: 20px;
         }
     </style>
 </head>
@@ -35,9 +44,13 @@
     </header>    
 
     <main class="p-4">
-        <h1 class="text-2xl font-bold mb-4">Restaurants</h1>
-        <div id="restaurant-list" class="grid grid-cols-3 gap-4">
-            <!-- Restaurants will load here -->
+        
+        <div class="restaurants">
+            <h1 class="font-size:30px">Restaurants</h1>
+            {% for restaurant in restaurants %}
+             <a href="{% url 'restaurant_detail' restaurant.id %}"><h2>{{ restaurant.name }}</h2></a>
+            {% endfor %}
+
         </div>
     </main>
 
