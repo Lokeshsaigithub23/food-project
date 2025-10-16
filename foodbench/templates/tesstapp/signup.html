@@ -6,7 +6,7 @@
     <title>Sign Up</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="p-6">
+<body class="p-6 bg-gray-400">
     <h1 class="text-2xl font-bold mb-4">Sign Up</h1>
     <form method="POST" class="space-y-4">
         {% csrf_token %}
@@ -17,6 +17,6 @@
     {% if error %}
         <p class="text-red-500 mt-2">{{ error }}</p>
     {% endif %}
-    <p class="mt-2">Already have an account? <a href="{% url 'login' %}" class="text-blue-500">Login</a></p>
+    <p class="mt-2">Already have an account? <a href="{% url 'login' %}" class="text-black-500 bg-white border-2 border-black py-1 px-1">Login</a></p>
 </body>
 </html>
