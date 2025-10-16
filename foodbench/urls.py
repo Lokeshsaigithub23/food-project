@@ -34,7 +34,7 @@ from tesstapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name='home_page'),
-    path('restaurant/<int:restaurant_id>/', views.restaurant_detail, name='restaurant_detail'),
+    path('restaurant/<int:restaurant_id>/', views.restaurant_menu, name='restaurant_menu'),
     path('cart/', views.cart_page, name='cart_page'),
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),

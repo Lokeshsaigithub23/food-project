@@ -12,7 +12,14 @@ def home_page(request):
 
 # Restaurant Detail Page
 
-
+def restaurant_menu(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, id=restaurant_id)
+    food_items = FoodItem.objects.filter(restaurant=restaurant)
+    context = {
+        'restaurant': restaurant,
+        'food_items': food_items,
+    }
+    return render(request, 'tesstapp/restaurant_menu.html', context)
 # Cart Page
 def cart_page(request):
     return render(request, 'tesstapp/cart.html')

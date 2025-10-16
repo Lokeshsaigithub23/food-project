@@ -50,7 +50,7 @@
 
        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
          {% for restaurant in restaurants %}
-            <a href="{% url 'restaurant_detail' restaurant.id %}" class="block bg-white rounded-lg shadow-md p-4 text-center hover:bg-gray-100 transition">
+            <a href="{% url 'restaurant_menu' restaurant.id %}" class="block bg-white rounded-lg shadow-md p-4 text-center hover:bg-gray-100 transition">
                 <h2 class="text-xl font-semibold mb-2">{{ restaurant.name }}</h2>
                 <p class="mb-1"><strong>Location:</strong> {{ restaurant.location }}</p>
                 <p class="mb-1"><strong>Rating:</strong> {{ restaurant.rating }}</p>
